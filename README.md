@@ -38,7 +38,12 @@ Sistema web completo de gestión de usuarios con autenticación, roles y desplie
 
 ## Estructura del Proyecto
 
-gestion-usuarios/ ├── frontend/ # Aplicación React │ ├── src/ # Archivos fuente de React │ ├── Dockerfile # Dockerfile para el frontend │ └── package.json # Dependencias del frontend ├── backend/ # API Node.js/Express │ ├── src/ # Archivos fuente de Node.js │ ├── Dockerfile # Dockerfile para el backend │ └── package.json # Dependencias del backend ├── k8s/ # Configuraciones Kubernetes │ ├── namespace.yaml # Configuración de Namespace │ ├── secrets.yaml # Configuración de Secretos │ ├── database-deployment.yaml # Despliegue de Base de Datos │ ├── backend-deployment.yaml # Despliegue del Backend │ └── frontend-deployment.yaml # Despliegue del Frontend └── docker-compose.yml # Configuración de Docker Compose
+gestion-usuarios/ 
+├── frontend/ # Aplicación React │ 
+├── src/ # Archivos fuente de React │ 
+├── Dockerfile # Dockerfile para el frontend │
+ └── package.json # Dependencias del frontend 
+├── backend/ # API Node.js/Express │ ├── src/ # Archivos fuente de Node.js │ ├── Dockerfile # Dockerfile para el backend │ └── package.json # Dependencias del backend ├── k8s/ # Configuraciones Kubernetes │ ├── namespace.yaml # Configuración de Namespace │ ├── secrets.yaml # Configuración de Secretos │ ├── database-deployment.yaml # Despliegue de Base de Datos │ ├── backend-deployment.yaml # Despliegue del Backend │ └── frontend-deployment.yaml # Despliegue del Frontend └── docker-compose.yml # Configuración de Docker Compose
 
 
 
