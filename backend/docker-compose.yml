@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  backend_service:
+    build: .
+    container_name: gestion_usuarios_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=gestion_usuarios
+      - DB_PORT=5432
+      - JWT_SECRET=tu_clave_secreta_aqui
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend_network
+
+  db:
+    image: postgres:13
+    container_name: gestion_usuarios_db
+    restart: always
+    environment:
+      POSTGRES_DB: gestion_usuarios
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  backend_network:
+    name: gestion_usuarios_network
+    driver: bridge
+
+volumes:
+  postgres_data:

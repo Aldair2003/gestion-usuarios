@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: pruebasdepracticas52/gestion-usuarios-db:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: root-password
+        - name: MYSQL_DATABASE
+          value: gestion_usuarios
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: db
